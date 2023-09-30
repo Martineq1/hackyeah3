@@ -1,0 +1,32 @@
+cierpliwość: 5
+myslenie analityczne: 3
+costam : 4
+
+
+prawo (chat , albo badania rynku)
+cierpliwość:4
+myslenie analityczne: 3
+costam:4
+
+
+
+
+trenowanie modelu gpt chat turbo 3.5
+cierpliwość: 5
+myslenie analityczne: 3
+costam : 4
+
+output: prawo 
+
+
+
+-----
+historia - zbierz historię ludzi 
+
+{input text: cierpliwość: 5
+myslenie analityczne: 3
+costam : 4
+output text: prawo}
+
+
+historia - zbierz historię ludzi 
