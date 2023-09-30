@@ -32,30 +32,35 @@ def generate_chat_completion(messages, model="gpt-4", temperature=1, max_tokens=
     else:
         raise Exception(f"Error {response.status_code}: {response.text}")
 
-skillset = """{"Cierpliwosc": "5"
-,"Umiejętnosci Komunikacyjne":   "3"
-,"Ciagle Uczenie sie": "2"
-,"Kreatywnosc": "4"
-,"Myslenie Analityczne": "3"  
-,"Dostosowawczosc":  "2"
-,"Zarzadzanie Czasem": "2"
-,"Wspolpraca":  "3"
-,"Odpornosc": "4"
-,"Umiejętnosci Organizacyjne" : "4"
-,"Ciekawosc": "5"}"""
+skillset = """{"Cierpliwosc": "4"
+,"Umiejetnosci Komunikacyjne":   "3
+,"Ciagle Uczenie sie": "1"
+,"Kreatywnosc": "3"
+,"Myslenie Analityczne": "2"  
+,"Dostosowawczosc":  "5"
+,"Zarzadzanie Czasem": "5"
+,"Wspolpraca":  "2"
+,"Odpornosc": "3"
+,"Umiejetnosci Organizacyjne" : "4"
+,"Ciekawosc": "2"
+,"Swiadomosc Etyczna:": "2"
+,"Dokumentacja: "5" }"""
 
-zawod = "informatyk"                
+zawod = "prawnik"                
 
-messages = [
+for x in range(20):
 
-        {"role": "user", "content": f"To jest opis jak dobre muszą być wskazabe umiejętności potrzebne dla prawnika. {skillset} Wygeneruj podobny zestaw dla zawodu {zawod} zachowując te umiejętności , ale nie ich wagę którę są wskazane"}
-]
+    messages = [
 
-print("\n")
-response_text = generate_chat_completion(messages)
-print(response_text)
-with open(f"FolderPath\{zawod}.json", "w") as f:
-     json.dump(response_text, f)
+            {"role": "user", "content": f"""To jest opis jak dobre muszą być wskazane umiejętności potrzebne dla {zawod}. {skillset} Wygeneruj podobny dla tego zawodu zachowując te umiejętności , ale nie ich wagę którę są wskazane. Zastosuj dla tych wag pewien poziom odchyleń między zestawami , ale 
+             niezbyt duży ponieważ to jest ten sam zawód. Nie dodawaj dodatkowych komenatrzy"""}
+    ]
+
+    print("\n")
+    response_text = generate_chat_completion(messages)
+    print(response_text)
+    with open(f"{FolderPath}\{zawod}\{zawod}_{x}.json", "w") as f:
+         json.dump(response_text, f)
 
 
 
