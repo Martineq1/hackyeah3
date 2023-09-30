@@ -5,39 +5,14 @@ import json
 API_KEY = "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" 
 API_ENDPOINT = "https://api.openai.com/v1/chat/completions"
 
-# Initialize the OpenAI API client
-#openai.api_key = api_key
+print("Podaj imię")
+imie = input()
+#create json file with name imie
+data = {}
 
-# Function to send a message to GPT-3.5 and get a responsektor
-
-    # Extract and return the generated message from the response
-
-
-#def get_chat_response(prompt, messages):
-#    # Send a message to GPT-4 and get a response
-#    response = openai.Completion.create(
-#        engine="text-davinci-004",
-#        prompt=prompt,
-#        max_tokens=1024,
-#        n=1,
-#        stop=None,
-#        temperature=0.5,
-#        messages=messages
-#    )
-#
-#    # Extract and return the generated message from the response
-#    message = response.choices[0].text.strip()
-#    return message
-#
-## Example usage
-#prompt = "What is the meaning of life?"
-#messages = [
-#    {"text": "I don't know, what do you think?", "user": True},
-#    {"text": "I think the meaning of life is to be happy.", "user": False},
-#]
-#
-#response = get_chat_response(prompt, messages)
-#print(response)
+# Write data to the file
+with open(f"{imie}.json", "w") as f:
+    json.dump(data, f)
 
 
 def generate_chat_completion(messages, model="gpt-4", temperature=1, max_tokens=None):
@@ -62,35 +37,44 @@ def generate_chat_completion(messages, model="gpt-4", temperature=1, max_tokens=
     else:
         raise Exception(f"Error {response.status_code}: {response.text}")
 
-skillset =     [[1 ,"Cierpliwość", "testujące cierpliwość"],
-                [2 ,"Myślenie Analityczne",  "sprawdzające myślenie analityczne"],
-                [3 ,"Ciągłe Uczenie się", "sprawdzające ciągłe uczenie się"],
-                [4 ,"Umiejętności Komunikacyjne", "sprawdzające umiejętności komunikacyjne"],
-                [5 ,"Kreatywność", "sprawdzające kreatywność"],
-                [6 ,"Dostosowawczość", "sprawdzające dostosowawczość"],
-                [7 ,"Zarządzanie Czasem", "umiejętność zarządzania czasem"],
-                [8 ,"Współpraca", "sprawdzające umiejętność współpracy"],
-                [9,"Odporność", "sprawdzające odporność psychiczną"],
-                [10 ,"Umiejętności Organizacyjne", "sprawdzające umiejętności organizacyjne"],
-                [11 ,"Ciekawość", "sprawdzające ciekawość"],
-                [12 ,"Empatia", "sprawdzające empatię"]
+skillset =     [[1 ,"Cierpliwosc", "testujące cierpliwość"],
+                [2 ,"Umiejętnosci Komunikacyjne", "sprawdzające umiejętności komunikacyjne"],
+                [3 ,"Ciagle Uczenie sie", "sprawdzające ciągłe uczenie się"],
+                [4 ,"Kreatywnosc", "sprawdzające kreatywność"],
+                [5 ,"Myslenie Analityczne",  "sprawdzające myślenie analityczne"],
+                [6 ,"Dostosowawczosc", "sprawdzające dostosowawczość"],
+                [7 ,"Zarzadzanie Czasem", "umiejętność zarządzania czasem"],
+                [8 ,"Wspolpraca", "sprawdzające umiejętność współpracy"],
+                [9,"Odpornosc", "sprawdzające odporność psychiczną"],
+                [10 ,"Umiejętnosci Organizacyjne", "sprawdzające umiejętności organizacyjne"],
+                [11 ,"Ciekawosc", "sprawdzające ciekawość"],
+                [12 ,"Empatia", "sprawdzające empatie"]
                 ]
-for skill in skillset:
+for skill in skillset[0:1]:
     messages = [
 
         {"role": "user", "content": f"\n Stwórz pytanie {skill[2]} dla nastolatka'"}
     ]
+    print(skill[1])
+    print("\n")
     response_text = generate_chat_completion(messages)
     print(response_text)
     odpowiedz = input()
     messages = [
-        {"role": "user", "content": "\n Jak w skali 1-5 oceniasz cechę osoby, która na pytanie : " + response_text + " odpowiada: " + odpowiedz + "Odpowiedz podając jedynie liczbę"}
+        {"role": "user", "content": "\n Jak w skali 1-5 oceniasz cechę osoby, która na pytanie : " + response_text + " odpowiada: " + odpowiedz + ". Odpowiedz podając jedynie liczbę."}
     ]
-
-    print(messages[0])
+    
+    print(messages[0]["content"])
     response_text = generate_chat_completion(messages)
-    with open(f"{skill[1]}.json", "w") as f:
-        json.dump(response_text, f)
+    with open(f"{imie}.json", "r") as f:
+     data = json.load(f)
+     new_data = {skill[1]: response_text}
+     data.update(new_data)
+    with open(f"{imie}.json", "w") as f:
+     json.dump(data, f)
+
 #save response_text to json file with name skill[0]
     print(response_text)
+    print("\n")
+
 

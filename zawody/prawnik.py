@@ -1,0 +1,11 @@
+{"Cierpliwosc": "5"
+,"Umiejętnosci Komunikacyjne":   "3"
+,"Ciagle Uczenie sie": "2"
+,"Kreatywnosc": "4"
+,"Myslenie Analityczne": "3"  
+,"Dostosowawczosc":  "2"
+,"Zarzadzanie Czasem": "2"
+,"Wspolpraca":  "3"
+,"Odpornosc": "4"
+,"Umiejętnosci Organizacyjne" : "4"
+,"Ciekawosc": "5"}
