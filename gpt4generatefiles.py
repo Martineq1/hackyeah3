@@ -4,7 +4,7 @@ import json
 
 API_KEY = "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" 
 API_ENDPOINT = "https://api.openai.com/v1/chat/completions"
-
+FolderPath = "F:\Git\hackyeah3\zawody"
 
 
 # Write data to the file
@@ -43,17 +43,19 @@ skillset = """{"Cierpliwosc": "5"
 ,"Odpornosc": "4"
 ,"Umiejętnosci Organizacyjne" : "4"
 ,"Ciekawosc": "5"}"""
-                
+
+zawod = "informatyk"                
 
 messages = [
 
-        {"role": "user", "content": f"To jest opis jak dobre muszą być wskazabe umiejętności potrzebne dla prawnika. {skillset} Wygeneruj podobny zestaw dla zawodu informatyka zachowując te umiejętności , ale nie ich wagę którę są wskazane"}
+        {"role": "user", "content": f"To jest opis jak dobre muszą być wskazabe umiejętności potrzebne dla prawnika. {skillset} Wygeneruj podobny zestaw dla zawodu {zawod} zachowując te umiejętności , ale nie ich wagę którę są wskazane"}
 ]
 
 print("\n")
 response_text = generate_chat_completion(messages)
 print(response_text)
-odpowiedz = input()
+with open(f"FolderPath\{zawod}.json", "w") as f:
+     json.dump(response_text, f)
 
 
 

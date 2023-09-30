@@ -4,6 +4,7 @@ import json
 
 API_KEY = "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" 
 API_ENDPOINT = "https://api.openai.com/v1/chat/completions"
+FolderPath = "F:\Git\hackyeah3\osoby"
 
 print("Podaj imię")
 imie = input()
@@ -11,7 +12,7 @@ imie = input()
 data = {}
 
 # Write data to the file
-with open(f"{imie}.json", "w") as f:
+with open(f"FolderPath\{imie}.json", "w") as f:
     json.dump(data, f)
 
 
@@ -66,11 +67,11 @@ for skill in skillset[0:1]:
     
     print(messages[0]["content"])
     response_text = generate_chat_completion(messages)
-    with open(f"{imie}.json", "r") as f:
+    with open(f"FolderPath\{imie}.json", "r") as f:
      data = json.load(f)
      new_data = {skill[1]: response_text}
      data.update(new_data)
-    with open(f"{imie}.json", "w") as f:
+    with open(f"FolderPath\{imie}.json", "w") as f:
      json.dump(data, f)
 
 #save response_text to json file with name skill[0]
