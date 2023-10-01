@@ -3,7 +3,7 @@ import requests
 import json
 import os
 
-API_KEY = "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" 
+API_KEY = "" 
 API_ENDPOINT = "https://api.openai.com/v1/chat/completions"
 FolderPath2 = "F:\Git\hackyeah3\plikitreningowe\\trening1.json"
 datatraining = ""

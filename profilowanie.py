@@ -2,7 +2,7 @@ import openai
 import requests
 import json
 
-API_KEY = "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" 
+API_KEY = "" 
 API_ENDPOINT = "https://api.openai.com/v1/chat/completions"
 FolderPath = "F:\Git\hackyeah3\osoby"
 
