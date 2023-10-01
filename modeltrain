@@ -1,0 +1,17 @@
+import openai
+import requests
+import json
+import os
+
+API_KEY = "***" 
+API_ENDPOINT = "https://api.openai.com/v1/chat/completions"
+FolderPath2 = "F:\Git\hackyeah3\plikitreningowe\\trening1.json"
+datatraining = ""
+
+openai.api_key = API_KEY
+openai.File.create(
+  file=open(FolderPath2, "rb"),
+  purpose='fine-tune'
+)
+
+openai.FineTuningJob.create(training_file="file-l9FcYJs33lOQoiTIVB7dp8lQ", model="gpt-3.5-turbo")

@@ -2,7 +2,7 @@ import openai
 import requests
 import json
 
-API_KEY = "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" 
+API_KEY = "***" 
 API_ENDPOINT = "https://api.openai.com/v1/chat/completions"
 FolderPath = "F:\Git\hackyeah3\osoby"
 
@@ -77,5 +77,6 @@ for skill in skillset[0:1]:
 #save response_text to json file with name skill[0]
     print(response_text)
     print("\n")
+
 
 
